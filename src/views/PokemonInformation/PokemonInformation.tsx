@@ -19,26 +19,29 @@ export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPoke
                 />
                 <div className={styles.identificationText}>
                     <div>
-                        <Heading size="lg">{capitalize(name)}</Heading>
+                        <Heading size="lg" fontSize='30px' lineHeight="1.2">{capitalize(name)}</Heading>
                         <Text fontSize="lg">#{id}</Text>
                     </div>
                     <div>
-                        <Heading size="md">{(types.length === 1) ? "Type:" : "Types:"}</Heading>
+                        <Heading size="md">{(types.length === 1) ? "Type" : "Types"}</Heading>
                         <div className={styles.types}>
                             {types.map((type) => (
-                                <Text fontSize="lg" className={styles.typeTile}>{capitalize(type)}</Text>
+                                <Text key={type} fontSize="lg" className={styles.typeTile}>{capitalize(type)}</Text>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
+            <div>
+            <Heading size="md">Stats</Heading>
             <div className={styles.stats}>
-                {['hp', 'attack', 'defense', 'speed'].map((key) => (
-                    <div className={styles.statTile}>
-                        <Heading size="md">{capitalize(key)}</Heading>
-                        <Text fontSize="lg">{stats[key]}</Text>
+                {['hp', 'attack', 'defense', 'speed'].map((stat) => (
+                    <div key={stat} className={styles.statTile}>
+                        <Heading size="md">{capitalize(stat)}</Heading>
+                        <Text fontSize="lg">{stats[stat]}</Text>
                     </div>
                 ))}
+            </div>
             </div>
         </div>
     )

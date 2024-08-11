@@ -1,7 +1,7 @@
 export interface ICapturedContext {
     capturedList: string[];
     capturePokemon: (pokemon: string) => void;
-    releasePokemon: (pokemon: string) => void;
+    releasePokemon: (index: number) => void;
 };
 
 export interface IPokemon {

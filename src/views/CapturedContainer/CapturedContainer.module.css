@@ -1,7 +1,24 @@
 .container {
     background-color: #B44A29;
-    min-width: 150px;
-    height: 450px;
+    min-width: 450px;
+    width: 450px;
+    height: 150px;
+    overflow-y: none;
+    overflow-x: scroll;
     border-radius: 20px;
     border: 5px solid #EEDEA4;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+@media (min-width: 625px) {
+    .container {
+        flex-direction: column;
+        min-width: 150px;
+        width: 150px;
+        height: 450px;
+        overflow-x: none;
+        overflow-y: scroll;
+    }
 }

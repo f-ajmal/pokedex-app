@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Input, InputGroup, Button } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+import { Input, Button, FormControl } from '@chakra-ui/react';
 import { CapturedContext } from "../../context/capturedContext";
 import { IPokemon } from "../../utils/interface";
 import { fetchPokemon } from "../../utils/api";
@@ -8,14 +8,14 @@ import PokemonInformation from "../PokemonInformation/PokemonInformation";
 import styles from './SearchContainer.module.css';
 
 export default function SearchContainer() {
+    const [searchValue, setSearchValue] = useState('')
     const [selectedPokemon, setSelectedPokemon] = useState('');
     const { capturedList, capturePokemon } = useContext(CapturedContext);
-    const queryClient = useQueryClient();
 
-    const { data = null, error, isLoading } = useQuery({
+    const { data = null, isError, isLoading } = useQuery({
         queryKey: ['pokemonAPI', selectedPokemon],
         queryFn: () => fetchPokemon(selectedPokemon.toLowerCase()),
-        enabled: false
+        enabled: !!selectedPokemon
     });
 
     const pokemonInfo = useMemo<IPokemon>(() => (
@@ -32,31 +32,35 @@ export default function SearchContainer() {
         }
     ), [data])
 
-    const handleSearch = () => {
-        if (selectedPokemon !== '') queryClient.fetchQuery({queryKey: ['pokemonAPI', selectedPokemon]});
+    const handleSearch = (event: any) => {
+        event.preventDefault();
+        setSelectedPokemon(searchValue)
     };
 
     return (
         <div className={styles.container}>
-            <InputGroup className={styles.inputGroup}>
-                <Input
-                    className={styles.inputBar}
-                    variant='outline'
-                    placeholder="Search Pokémon"
-                    value={selectedPokemon}
-                    onChange={(e) => setSelectedPokemon(e.target.value)}
-                />
-                    <Button 
-                        className={styles.searchButton}
-                        colorScheme="teal" 
-                        variant="solid" 
-                        onClick={handleSearch}
-                    >
-                        Search
-                    </Button>
-            </InputGroup>
-            {!!data && <PokemonInformation pokemonInfo={pokemonInfo} />}
-            <Button 
+            <form className={styles.form} onSubmit={handleSearch}>
+                <FormControl id="pokemonSearch" className={styles.formGroup}>
+                    <Input
+                        className={styles.inputBar}
+                        variant='outline'
+                        placeholder="Search Pokémon..."
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                    />
+                        <Button 
+                            className={styles.searchButton}
+                            colorScheme="teal" 
+                            variant="solid" 
+                            onClick={handleSearch}
+                            type="submit"
+                        >
+                            Search
+                        </Button>
+                </FormControl>
+            </form>
+            {!!selectedPokemon && !isLoading && !isError && <PokemonInformation pokemonInfo={pokemonInfo} />}
+            {!!selectedPokemon && !isLoading && !isError && <Button 
                 className={styles.captureButton}
                 colorScheme="teal" 
                 variant="solid" 
@@ -64,7 +68,7 @@ export default function SearchContainer() {
                 onClick={() => {capturePokemon(pokemonInfo?.image)}}
             >
                 Capture
-            </Button>
+            </Button>}
         </div>
       )
 }

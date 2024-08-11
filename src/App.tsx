@@ -1,12 +1,13 @@
 import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { CapturedProvider } from "./context/capturedContext";
+import queryClient from "./utils/queryClient";
 import SearchContainer from "./views/SearchContainer/SearchContainer";
 import CapturedContainer from "./views/CapturedContainer/CapturedContainer";
 import './App.css';
 
-const queryClient = new QueryClient();
+
 
 function AppContent() {
   return (

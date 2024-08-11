@@ -1,23 +1,28 @@
 .container {
     background-color: #B44A29;
     min-width: 450px;
+    width: 450px;
     height: 450px;
     border-radius: 20px;
     border: 5px solid #EEDEA4;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
     padding: 10px;
 }
 
-.inputGroup {
+.form {
+    width: 100%;
+}
+
+.formGroup {
+    display: flex;
     gap: 10px;
 }
 
 .inputBar {
-    background-color: #EEDEA4 !important;
+    flex: 1;
+    background-color: white !important;
     border-radius: 10px !important;
     border-color: #10394A !important;
 }
@@ -31,4 +36,5 @@
     border-radius: 10px !important;
     border: 1px solid #10394A;
     width: 100%;
+    margin-top: auto;
 }

@@ -18,8 +18,8 @@ const CapturedProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const releasePokemon = (pokemon: string) => {
-    setCapturedList((list) => list.filter((p) => p !== pokemon));
+  const releasePokemon = (removeIndex: number) => {
+    setCapturedList((list) => list.filter((_, index) => index !== removeIndex));
   };
 
   return (
