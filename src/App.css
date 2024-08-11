@@ -16,6 +16,12 @@
   margin: auto;
 }
 
+@media (max-width: 475px) {
+  .pokedex {
+    margin: 0 0 auto;
+  }
+}
+
 @media (min-width: 625px) {
   .pokedex {
     flex-direction: row;
