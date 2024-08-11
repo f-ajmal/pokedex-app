@@ -80,7 +80,7 @@ export default function SearchContainer() {
                 color="#10394A" 
                 fontSize="sm"
             >
-                Pokémon not found
+                Pokémon not found. Please search by name or ID.
             </Text>}
         </div>
       )
