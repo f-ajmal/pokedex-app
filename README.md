@@ -2,6 +2,8 @@
 
 A simple application that fetches and displays Pokemon data from PokeAPI
 
+This app has been deployed on Vercel. Check it out here: https://pokedex-app-fa.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
