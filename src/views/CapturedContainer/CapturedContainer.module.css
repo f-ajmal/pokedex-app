@@ -5,11 +5,17 @@
     height: 150px;
     overflow-y: none;
     overflow-x: scroll;
+    scrollbar-width: none;
     border-radius: 20px;
     border: 5px solid #EEDEA4;
     padding: 10px;
     display: flex;
     gap: 10px;
+    margin: 0 auto auto;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
 }
 
 @media (min-width: 625px) {
@@ -20,5 +26,6 @@
         height: 450px;
         overflow-x: none;
         overflow-y: scroll;
+        margin: 0;
     }
 }

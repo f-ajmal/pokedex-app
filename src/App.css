@@ -3,17 +3,34 @@
   width: 100%;
   min-height: 100vh;
   overflow-x: scroll;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pokedex {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px;
+  margin: auto;
 }
 
 @media (min-width: 625px) {
-  .app {
+  .pokedex {
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
+}
+
+.footer {
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer a:not(:last-child)::after {
+  content: " | ";
 }
 

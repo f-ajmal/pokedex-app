@@ -37,7 +37,7 @@ export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPoke
             <div className={styles.stats}>
                 {['hp', 'attack', 'defense', 'speed'].map((stat) => (
                     <div key={stat} className={styles.statTile}>
-                        <Heading size="md">{capitalize(stat)}</Heading>
+                        <Heading size="md">{stat === 'hp' ? 'HP' : capitalize(stat)}</Heading>
                         <Text fontSize="lg">{stats[stat]}</Text>
                     </div>
                 ))}
