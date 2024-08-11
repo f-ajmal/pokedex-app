@@ -7,7 +7,7 @@ export default function CapturedContainer() {
     const { capturedList, releasePokemon } = useContext(CapturedContext);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="captured-container">
             {capturedList.map((image, index) => {
                 return <Image 
                     key={image + index}
