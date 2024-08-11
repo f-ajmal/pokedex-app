@@ -1,6 +1,6 @@
 import React, { useState, useContext, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Input, Button, FormControl } from '@chakra-ui/react';
+import { Input, Button, FormControl, Spinner, Text } from '@chakra-ui/react';
 import { CapturedContext } from "../../context/capturedContext";
 import { IPokemon } from "../../utils/interface";
 import { fetchPokemon } from "../../utils/api";
@@ -48,15 +48,15 @@ export default function SearchContainer() {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                        <Button 
-                            className={styles.searchButton}
-                            colorScheme="teal" 
-                            variant="solid" 
-                            onClick={handleSearch}
-                            type="submit"
-                        >
-                            Search
-                        </Button>
+                    <Button 
+                        className={styles.searchButton}
+                        colorScheme="teal" 
+                        variant="solid" 
+                        onClick={handleSearch}
+                        type="submit"
+                    >
+                        Search
+                    </Button>
                 </FormControl>
             </form>
             {!!selectedPokemon && !isLoading && !isError && <PokemonInformation pokemonInfo={pokemonInfo} />}
@@ -69,6 +69,19 @@ export default function SearchContainer() {
             >
                 Capture
             </Button>}
+            {isLoading && !isError && <Spinner 
+                size="lg"
+                color="#10394A" 
+                thickness="4px"
+                className={styles.spinner}
+            />}
+            {!isLoading && isError && <Text 
+                className={styles.errorMessage} 
+                color="#10394A" 
+                fontSize="sm"
+            >
+                Pokémon not found
+            </Text>}
         </div>
       )
 }
