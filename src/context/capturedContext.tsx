@@ -1,22 +1,21 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from 'react';
+import { ICapturedContext } from "../utils/interface";
 
-interface CapturedContextType {
-    capturedList: string[];
-    capturePokemon: (pokemon: string) => void;
-    releasePokemon: (pokemon: string) => void;
-};
-
-const CapturedContext = createContext<CapturedContextType>({
+const CapturedContext = createContext<ICapturedContext>({
     capturedList: [],
     capturePokemon: () => {},
     releasePokemon: () => {}
 });
 
-const CapturedProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const CapturedProvider = ({ children }: { children: ReactNode }) => {
   const [capturedList, setCapturedList] = useState<string[]>([]);
 
   const capturePokemon = (pokemon: string) => {
-    setCapturedList((list) => [...list, pokemon]);
+    if (capturedList.length < 6 && !!pokemon) {
+      setCapturedList((list) => [...list, pokemon]);
+    } else if (capturedList.length === 6) {
+      alert('Maximum number of Pokémon captured.');
+    }
   };
 
   const releasePokemon = (pokemon: string) => {

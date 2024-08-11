@@ -1,12 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Input, InputGroup, Button } from '@chakra-ui/react';
+import { CapturedContext } from "../../context/capturedContext";
+import { IPokemon } from "../../utils/interface";
+import { fetchPokemon } from "../../utils/api";
+import PokemonInformation from "../PokemonInformation/PokemonInformation";
 import styles from './SearchContainer.module.css';
 
 export default function SearchContainer() {
     const [selectedPokemon, setSelectedPokemon] = useState('');
+    const { capturedList, capturePokemon } = useContext(CapturedContext);
+    const queryClient = useQueryClient();
+
+    const { data = null, error, isLoading } = useQuery({
+        queryKey: ['pokemonAPI', selectedPokemon],
+        queryFn: () => fetchPokemon(selectedPokemon.toLowerCase()),
+        enabled: false
+    });
+
+    const pokemonInfo = useMemo<IPokemon>(() => (
+        {
+            name: data?.name ?? null,
+            id: data?.id ?? null,
+            image: data?.sprites?.front_default ?? null,
+            types: data?.types?.map((item: any) => (item?.type?.name)) ?? [],
+            stats: data?.stats?.map((item: any) => (
+                    {[item?.stat?.name]: item?.base_stat}
+                )).reduce((acc: Object, curr: Object) => (
+                    { ...acc, ...curr }
+                ), {}) ?? {}
+        }
+    ), [data])
 
     const handleSearch = () => {
-        console.log(selectedPokemon);
+        if (selectedPokemon !== '') queryClient.fetchQuery({queryKey: ['pokemonAPI', selectedPokemon]});
     };
 
     return (
@@ -14,7 +41,6 @@ export default function SearchContainer() {
             <InputGroup className={styles.inputGroup}>
                 <Input
                     className={styles.inputBar}
-                    size='md'
                     variant='outline'
                     placeholder="Search Pokémon"
                     value={selectedPokemon}
@@ -29,14 +55,16 @@ export default function SearchContainer() {
                         Search
                     </Button>
             </InputGroup>
-            <div className="pokemonIdentificationContainer">
-                <div className="pokemonImage"></div>
-                <div className="pokemonIdentification">
-                <div className="pokemonTypesContainer"></div>
-                </div>
-                <div className="pokemonStatsContainer"></div>
-                <div className="captureButton"></div>
-            </div>
+            {!!data && <PokemonInformation pokemonInfo={pokemonInfo} />}
+            <Button 
+                className={styles.captureButton}
+                colorScheme="teal" 
+                variant="solid" 
+                isDisabled={capturedList.length >= 6}
+                onClick={() => {capturePokemon(pokemonInfo?.image)}}
+            >
+                Capture
+            </Button>
         </div>
       )
 }

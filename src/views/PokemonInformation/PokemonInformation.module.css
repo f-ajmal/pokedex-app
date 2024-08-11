@@ -1,0 +1,53 @@
+.container {
+    width: 100%;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px
+}
+
+.identification {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.identificationText {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+
+.types {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+.typeTile {
+    background-color: #EEDEA4;
+    border-radius: 5px;
+    border: 1px solid #10394A;
+    width: fit-content;
+    padding: 0px 5px;
+    margin-top: 5px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statTile {
+    background-color: #DE7352;
+    border-radius: 5px;
+    border: 1px solid #10394A;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 90px;
+}
