@@ -12,6 +12,14 @@
     margin: auto auto 0;
 }
 
+@media (max-width: 475px) {
+    .container {
+        min-width: 350px;
+        width: 350px;
+        height: 540px;
+    }
+}
+
 @media (min-width: 625px) {
     .container {
         margin: 0;

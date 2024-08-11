@@ -8,7 +8,11 @@ export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPoke
     const { name, id, image, types, stats } = pokemonInfo;
     return (
         <div className={styles.container}>
-            <div className={styles.identification}>
+            <div className={styles.name}>
+                <Heading size="lg" fontSize='30px' lineHeight="1.2">{capitalize(name)}</Heading>
+                <Heading size="lg" fontSize='25px' lineHeight="1.2">#{id}</Heading>
+            </div>
+            <div className={styles.imageAndTypes}>
                 <Image 
                     src={image} 
                     alt="pokemon-image" 
@@ -17,31 +21,23 @@ export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPoke
                     border="1px solid #10394A"
                     backgroundColor="#EEDEA4"
                 />
-                <div className={styles.identificationText}>
-                    <div>
-                        <Heading size="lg" fontSize='30px' lineHeight="1.2">{capitalize(name)}</Heading>
-                        <Text fontSize="lg">#{id}</Text>
-                    </div>
-                    <div>
-                        <Heading size="md">{(types.length === 1) ? "Type" : "Types"}</Heading>
-                        <div className={styles.types}>
-                            {types.map((type) => (
-                                <Text key={type} fontSize="lg" className={styles.typeTile}>{capitalize(type)}</Text>
-                            ))}
-                        </div>
-                    </div>
+                <div className={styles.types}>
+                    <Heading size="md">{(types.length === 1) ? "Type" : "Types"}</Heading>
+                    {types.map((type) => (
+                        <Text key={type} fontSize="lg" className={styles.typeTile}>{capitalize(type)}</Text>
+                    ))}
                 </div>
             </div>
             <div>
-            <Heading size="md">Stats</Heading>
-            <div className={styles.stats}>
-                {['hp', 'attack', 'defense', 'speed'].map((stat) => (
-                    <div key={stat} className={styles.statTile}>
-                        <Heading size="md">{stat === 'hp' ? 'HP' : capitalize(stat)}</Heading>
-                        <Text fontSize="lg">{stats[stat]}</Text>
-                    </div>
-                ))}
-            </div>
+                <Heading size="md">Stats</Heading>
+                <div className={styles.stats}>
+                    {['hp', 'attack', 'defense', 'speed'].map((stat) => (
+                        <div key={stat} className={styles.statTile}>
+                            <Heading size="md">{stat === 'hp' ? 'HP' : capitalize(stat)}</Heading>
+                            <Text fontSize="lg">{stats[stat]}</Text>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )
