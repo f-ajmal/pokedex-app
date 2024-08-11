@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChakraProvider, Text } from '@chakra-ui/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { CapturedProvider } from "./context/capturedContext";

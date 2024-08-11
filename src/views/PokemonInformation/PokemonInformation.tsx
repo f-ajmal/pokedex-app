@@ -1,4 +1,3 @@
-import React from "react";
 import { capitalize } from 'lodash';
 import { Image, Heading, Text } from '@chakra-ui/react';
 import { IPokemon } from "../../utils/interface";

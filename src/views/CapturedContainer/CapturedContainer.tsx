@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Image } from '@chakra-ui/react';
 import { CapturedContext } from "../../context/capturedContext";
 import styles from './CapturedContainer.module.css';
