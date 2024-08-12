@@ -1,4 +1,3 @@
-import React from "react";
 import { capitalize } from 'lodash';
 import { Image, Heading, Text } from '@chakra-ui/react';
 import { IPokemon } from "../../utils/interface";
@@ -6,8 +5,9 @@ import styles from './PokemonInformation.module.css';
 
 export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPokemon }) {
     const { name, id, image, types, stats } = pokemonInfo;
+    
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="pokemon-information">
             <div className={styles.name}>
                 <Heading size="lg" fontSize='30px' lineHeight="1.2">{capitalize(name)}</Heading>
                 <Heading size="lg" fontSize='25px' lineHeight="1.2">#{id}</Heading>

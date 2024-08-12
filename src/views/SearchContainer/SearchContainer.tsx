@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo } from 'react';
+import { useState, useContext, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Input, Button, FormControl, Spinner, Text } from '@chakra-ui/react';
 import { CapturedContext } from "../../context/capturedContext";
@@ -38,7 +38,7 @@ export default function SearchContainer() {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="search-container">
             <form className={styles.form} onSubmit={handleSearch}>
                 <FormControl id="pokemonSearch" className={styles.formGroup}>
                     <Input
