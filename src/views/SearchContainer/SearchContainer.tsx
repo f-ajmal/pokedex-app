@@ -39,7 +39,7 @@ export default function SearchContainer() {
 
     return (
         <div className={styles.container} data-testid="search-container">
-            <form className={styles.form} onSubmit={handleSearch}>
+            <form className={styles.form} data-testid="form" onSubmit={handleSearch}>
                 <FormControl id="pokemonSearch" className={styles.formGroup}>
                     <Input
                         className={styles.inputBar}
