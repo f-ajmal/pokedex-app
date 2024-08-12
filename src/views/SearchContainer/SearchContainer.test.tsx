@@ -1,21 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import { CapturedContext, CapturedProvider } from '../../context/capturedContext';
+import { CapturedContext } from '../../context/capturedContext';
 import queryClient from "../../utils/queryClient";
-import { IPokemon } from '../../utils/interface';
 import SearchContainer from './SearchContainer';
 
 const mockCapturePokemon = jest.fn();
 const mockCapturedContext = { capturedList: [], capturePokemon: mockCapturePokemon, releasePokemon: () => {} };
-
-const mockPokemonData: IPokemon = {
-    name: 'Pikachu',
-    id: 25,
-    image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
-    types: ['Electric'],
-    stats: { hp: 35, attack: 55, defense: 40, speed: 90 },
-};
 
 const mockData = {
     name: 'Pikachu',
