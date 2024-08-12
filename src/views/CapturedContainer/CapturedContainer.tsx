@@ -17,7 +17,7 @@ export default function CapturedContainer() {
                     borderRadius="2xl"
                     border="1px solid #10394A"
                     backgroundColor="#EEDEA4"
-                    _hover={{ backgroundColor: '#c5a46a', cursor: 'pointer' }}
+                    cursor="pointer"
                     onClick={() => releasePokemon(index)}
                 />
             })}
