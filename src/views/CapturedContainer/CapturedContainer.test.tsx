@@ -1,8 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import { CapturedContext } from '../../context/capturedContext';
-import queryClient from "../../utils/queryClient";
 import { IPokemon } from '../../utils/interface';
 import CapturedContainer from './CapturedContainer';
 
@@ -23,9 +21,7 @@ describe('CapturedContainer', () => {
         render(
             <CapturedContext.Provider value={mockCapturedContext}>
                 <ChakraProvider>
-                    <QueryClientProvider client={queryClient}>
-                        <CapturedContainer />
-                    </QueryClientProvider>
+                    <CapturedContainer />
                 </ChakraProvider>
             </CapturedContext.Provider>
         );

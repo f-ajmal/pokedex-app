@@ -5,6 +5,7 @@ import styles from './PokemonInformation.module.css';
 
 export default function PokemonInformation({ pokemonInfo }: { pokemonInfo: IPokemon }) {
     const { name, id, image, types, stats } = pokemonInfo;
+    
     return (
         <div className={styles.container} data-testid="pokemon-information">
             <div className={styles.name}>
