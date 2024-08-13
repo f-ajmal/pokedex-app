@@ -12,9 +12,11 @@ Users can search any pokemon by name or id and display it's information.
 3. ID/Name
 4. List all types associated.
 5. List 4 stats. (HP, Attack, Defense, Speed)
+
 Capture Button - Pressing the "Capture" button adds the current Pokemon to list on the right.
 1. Can capture the same pokemon multiple times.
 2. Can only capture up to 6 pokemon.
+
 Captured List
 1. Displays all captured Pokemon images stacked vertically.
 2. Clicking on a captured Pokemon removes it from the list.
