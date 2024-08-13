@@ -35,10 +35,10 @@ export default function SearchContainer() {
 
     const handleSearch = (event: any) => {
         event.preventDefault();
-        const isValid = (searchValue === "") || /^[a-zA-Z0-9 ]+$/.test(searchValue.trim());
-        if(isValid) {
+        const modifiedSearchValue = searchValue.trim().toLowerCase().replace(/ /g, '-').replace(/[.']/g, '')
+        if((searchValue === "") || /^[a-zA-Z0-9 -]+$/.test(modifiedSearchValue)) {
             setIsSearchValid(true);
-            setSelectedPokemon(searchValue.trim().toLowerCase())
+            setSelectedPokemon(modifiedSearchValue)
         } else {
             setIsSearchValid(false);
         }
