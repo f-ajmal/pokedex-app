@@ -9,12 +9,13 @@ import styles from './SearchContainer.module.css';
 
 export default function SearchContainer() {
     const [searchValue, setSearchValue] = useState('')
+    const [isSearchValid, setIsSearchValid] = useState(true)
     const [selectedPokemon, setSelectedPokemon] = useState('');
     const { capturedList, capturePokemon } = useContext(CapturedContext);
 
     const { data = null, isError, isLoading } = useQuery({
         queryKey: ['pokemonAPI', selectedPokemon],
-        queryFn: () => fetchPokemon(selectedPokemon.toLowerCase()),
+        queryFn: () => fetchPokemon(selectedPokemon),
         enabled: !!selectedPokemon
     });
 
@@ -34,8 +35,16 @@ export default function SearchContainer() {
 
     const handleSearch = (event: any) => {
         event.preventDefault();
-        setSelectedPokemon(searchValue)
+        const isValid = (searchValue === "") || /^[a-zA-Z0-9 ]+$/.test(searchValue.trim());
+        if(isValid) {
+            setIsSearchValid(true);
+            setSelectedPokemon(searchValue.trim().toLowerCase())
+        } else {
+            setIsSearchValid(false);
+        }
     };
+
+    const showErrorMessage = !isSearchValid || isError;
 
     return (
         <div className={styles.container} data-testid="search-container">
@@ -59,8 +68,8 @@ export default function SearchContainer() {
                     </Button>
                 </FormControl>
             </form>
-            {!!selectedPokemon && !isLoading && !isError && <PokemonInformation pokemonInfo={pokemonInfo} />}
-            {!!selectedPokemon && !isLoading && !isError && <Button 
+            {!!selectedPokemon && !isLoading && !showErrorMessage && <PokemonInformation pokemonInfo={pokemonInfo} />}
+            {!!selectedPokemon && !isLoading && !showErrorMessage && <Button 
                 className={styles.captureButton}
                 colorScheme="teal" 
                 variant="solid" 
@@ -69,13 +78,13 @@ export default function SearchContainer() {
             >
                 Capture
             </Button>}
-            {isLoading && !isError && <Spinner 
+            {isLoading && !showErrorMessage && <Spinner 
                 size="lg"
                 color="#10394A" 
                 thickness="4px"
                 className={styles.spinner}
             />}
-            {!isLoading && isError && <Text 
+            {!isLoading && showErrorMessage && <Text 
                 className={styles.errorMessage} 
                 color="#10394A" 
                 fontSize="sm"

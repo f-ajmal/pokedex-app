@@ -4,15 +4,32 @@ A simple application that fetches and displays Pokemon data from PokeAPI
 
 This app has been deployed on Vercel. Check it out here: https://pokedex-app-fa.vercel.app/
 
+# Acceptance Criteria
+
+Users can search any pokemon by name or id and display it's information.
+1. Front-facing image
+2. Name
+3. ID/Name
+4. List all types associated.
+5. List 4 stats. (HP, Attack, Defense, Speed)
+Capture Button - Pressing the "Capture" button adds the current Pokemon to list on the right.
+1. Can capture the same pokemon multiple times.
+2. Can only capture up to 6 pokemon.
+Captured List
+1. Displays all captured Pokemon images stacked vertically.
+2. Clicking on a captured Pokemon removes it from the list.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+# `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -20,12 +37,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+# `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -35,7 +52,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+# `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
