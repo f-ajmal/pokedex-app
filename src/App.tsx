@@ -19,6 +19,9 @@ function AppContent() {
         <a href="https://github.com/f-ajmal/pokedex-app" title="Github repo">Web application created by Fardeen Ajmal</a>
         <a href="https://pokeapi.co/" title="pokemon api">Pokémon API by PokéAPI</a>
         <a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Poké Ball favicon created by Nikita Golubev - Flaticon</a>
+        {process.env.REACT_APP_COMMIT_HASH && (
+          <span data-testid="commit-hash">Deployed commit: {process.env.REACT_APP_COMMIT_HASH}</span>
+        )}
       </Text>
     </div>
   );
